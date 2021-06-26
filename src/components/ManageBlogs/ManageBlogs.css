@@ -1,0 +1,22 @@
+.manageBlogs, .writeABlog {
+    background-color: #dddddd;
+}
+
+.manageBlogs__head, .writeABlog__head {
+    border-radius: 12px;
+}
+
+.manageBlogs__icon, .writeABlog__icon {
+    width: 30px;
+    height: 38px;
+    margin-right: 10px;
+}
+
+.manageBlogs__head, .writeABlog__head h3 {
+    font-family: 'Kaushan Script', cursive;
+}
+
+.manageBlogs__col, .writeABlog__col {
+    border-radius: 12px;
+    font-family: 'Nanum Myeongjo', serif;
+}

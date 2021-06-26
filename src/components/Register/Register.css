@@ -1,0 +1,18 @@
+.register {
+    height: 100vh;
+    background-image: url(https://www.pixelstalk.net/wp-content/uploads/2016/07/Forests-bridges-natural-scenery-hd-wallpaper-backgrounds-1920x1080.jpg);
+    background-size: cover;
+}
+
+.register__main {
+    border-radius: 10px;
+    font-family: 'Nanum Myeongjo', serif;
+}
+
+.register__head {
+    font-family: 'Kaushan Script', cursive;
+}
+
+.register__main input {
+    border-bottom: 1px solid #646464 !important;
+}
