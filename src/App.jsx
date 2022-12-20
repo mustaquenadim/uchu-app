@@ -6,7 +6,6 @@ import {
 	Link,
 } from 'react-router-dom';
 import { lazy, Suspense } from 'react';
-import Blog from './pages/Blog';
 
 // layouts
 const DefaultLayout = lazy(() => import('./layouts/DefaultLayout'));
@@ -15,8 +14,11 @@ const DashboardLayout = lazy(() => import('./layouts/DashboardLayout'));
 // pages
 const Home = lazy(() => import('./pages/Home'));
 const BlogsGrid = lazy(() => import('./pages/BlogsGrid'));
+const Blog = lazy(() => import('./pages/Blog'));
 const ManageBlogs = lazy(() => import('./pages/ManageBlogs'));
 const WriteBlog = lazy(() => import('./pages/WriteBlog'));
+const Login = lazy(() => import('./pages/Login'));
+const SignUp = lazy(() => import('./pages/SignUp'));
 const NoMatch = lazy(() => import('./pages/404'));
 
 const App = () => {
@@ -42,8 +44,12 @@ const App = () => {
 					element: <Blog />,
 				},
 				{
+					path: '/signup',
+					element: <SignUp />,
+				},
+				{
 					path: '/login',
-					element: <Home />,
+					element: <Login />,
 				},
 			],
 		},

@@ -1,12 +1,8 @@
 import React, { useContext } from 'react';
-import './Register.css';
-import { UserContext } from '../../App';
+import './SignUp.scss';
 import { useForm } from 'react-hook-form';
-import { Link, useHistory, useLocation } from 'react-router-dom';
-import firebase from 'firebase/app';
-import 'firebase/auth';
-import { firebaseConfig } from '../Login/firebase.config';
-// import FireAuth from './FireAuth';
+import { Link, useLocation } from 'react-router-dom';
+import axios from 'axios';
 
 const SignUp = () => {
 	const {
@@ -15,36 +11,17 @@ const SignUp = () => {
 		watch,
 		formState: { errors },
 	} = useForm();
-	const [loggedInUser, setLoggedInUser] = useContext(UserContext);
-	const history = useHistory();
+	// const [loggedInUser, setLoggedInUser] = useContext(UserContext);
+	// const history = useHistory();
 	const location = useLocation();
 	const { from } = location.state || { from: { pathname: '/' } };
-	if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
 	const onSubmit = (data) => {
-		console.log(data);
-		const { name, email, password } = data;
-		firebase
-			.auth()
-			.createUserWithEmailAndPassword(email, password)
-			.then((response) => {
-				console.log(response.user);
-				updateUserName(name);
-			})
-			.catch((error) => {
-				console.log(error.message);
-			});
+		axios
+			.post(`${import.meta.env.VITE_API_URL}/register`, data)
+			.then((response) => console.log(response))
+			.catch((error) => console.log(error));
 	};
-	const updateUserName = (name) => {
-		const user = firebase.auth().currentUser;
-		user
-			.updateProfile({ displayName: name })
-			.then(() => {
-				console.log('Username Updated Successfully.');
-			})
-			.catch((error) => {
-				console.log(error);
-			});
-	};
+
 	return (
 		<div className="register d-flex justify-content-center align-items-center">
 			<div className="register__main bg-white p-4" style={{ width: '450px' }}>
@@ -53,7 +30,7 @@ const SignUp = () => {
 					<div className="form-group mb-3">
 						<input
 							type="text"
-							className="form-control border-0 shadow-none"
+							className="form-control shadow-none"
 							id="name"
 							placeholder="Name"
 							{...register('name', { required: true })}
@@ -65,7 +42,7 @@ const SignUp = () => {
 					<div className="form-group mb-3">
 						<input
 							type="email"
-							className="form-control border-0 shadow-none"
+							className="form-control shadow-none"
 							id="email"
 							placeholder="Email"
 							{...register('email', { required: true, pattern: /^\S+@\S+$/i })}
@@ -77,7 +54,7 @@ const SignUp = () => {
 					<div className="form-group mb-3">
 						<input
 							type="password"
-							className="form-control border-0 shadow-none"
+							className="form-control shadow-none"
 							id="password"
 							placeholder="Password"
 							{...register('password', { required: true, minLength: 6 })}
@@ -89,7 +66,7 @@ const SignUp = () => {
 					<div className="form-group mb-3">
 						<input
 							type="password"
-							className="form-control border-0 shadow-none"
+							className="form-control shadow-none"
 							id="confirmPassword"
 							placeholder="Confirm Password"
 							{...register('confirmPassword', {
@@ -106,7 +83,10 @@ const SignUp = () => {
 						Create an account
 					</button>
 					<p className="text-center">
-						Already have an account? <Link to="/login">Login</Link>
+						Already have an account?{' '}
+						<Link to="/login" className="text-decoration-none">
+							Login
+						</Link>
 					</p>
 				</form>
 				{/* <FireAuth /> */}
