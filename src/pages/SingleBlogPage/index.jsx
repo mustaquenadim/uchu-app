@@ -2,8 +2,8 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-const Blog = () => {
-	const { _id: id } = useParams();
+const SingleBlogPage = () => {
+	const { id } = useParams();
 	const [blog, setBlog] = useState();
 
 	useEffect(() => {
@@ -17,18 +17,18 @@ const Blog = () => {
 
 	return (
 		<div className="blog container">
-			<div class="card border-0 mb-3">
-				<img src={blog?.imageURL} class="card-img-top" alt="..." />
-				<div class="card-body">
+			<div className="card border-0 mb-3">
+				<img src={blog?.imageURL} className="card-img-top" alt="..." />
+				<div className="card-body">
 					<h1 className="mt-5">{blog?.title}</h1>
-					<p class="card-text mb-5">
-						<small class="text-muted">{blog?.dateTime}</small>
+					<p className="card-text mb-5">
+						<small className="text-muted">{blog?.dateTime}</small>
 					</p>
-					<p class="card-text">{blog?.description}</p>
+					<p className="card-text">{blog?.description}</p>
 				</div>
 			</div>
 		</div>
 	);
 };
 
-export default Blog;
+export default SingleBlogPage;

@@ -3,7 +3,7 @@ import './Banner.scss';
 
 const Banner = () => {
 	return (
-		<div class="banner">
+		<div className="banner">
 			<img
 				src="https://www.teahub.io/photos/full/6-69284_2560x1440-wallpaper-two-jack-lake-sunset.jpg"
 				alt="Snow"

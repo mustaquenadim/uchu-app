@@ -30,18 +30,10 @@ const WriteBlog = () => {
 			price: data.price,
 			dateTime,
 		};
-		const url = `https://morning-inlet-65384.herokuapp.com/addBlog`;
-		fetch(url, {
-			method: 'POST',
-			headers: {
-				'content-type': 'application/json',
-			},
-			body: JSON.stringify(blogData),
-		}).then((result) => {
-			if (result) {
-				alert('Blog added successfully!');
-			}
-		});
+		axios
+			.post(`${import.meta.env.VITE_API_URL}/article`, blogData)
+			.then((res) => console.log(res))
+			.catch((err) => console.log(err));
 	};
 
 	return (

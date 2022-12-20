@@ -40,7 +40,7 @@ const ManageBlogs = () => {
 						className="manageBlogs__col bg-white p-3"
 						style={{ height: '85vh' }}
 					>
-						<table class="table table-borderless table-hover">
+						<table className="table table-borderless table-hover">
 							<thead className="">
 								<tr className="text-center table-success">
 									<th scope="col">Sl. No.</th>
