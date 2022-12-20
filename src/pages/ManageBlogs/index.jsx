@@ -2,27 +2,25 @@ import React, { useEffect, useState } from 'react';
 import './ManageBlogs.scss';
 import { Link } from 'react-router-dom';
 import { BsArrowLeft } from 'react-icons/bs';
+import axios from 'axios';
 
 const ManageBlogs = () => {
 	const [blogs, setBlogs] = useState([]);
+
 	useEffect(() => {
-		fetch('https://morning-inlet-65384.herokuapp.com/blogs')
-			.then((res) => res.json())
-			.then((data) => {
-				setBlogs(data);
-			});
+		axios
+			.get(`${import.meta.env.VITE_API_URL}/article`)
+			.then((res) => setBlogs(res?.data))
+			.catch((err) => console.log(err));
 	});
-	const handleDelete = (id) => {
-		const url = `https://morning-inlet-65384.herokuapp.com/deleteBlog/${id}`;
-		fetch(url, {
-			method: 'DELETE',
-		})
-			.then((res) => res.json())
-			.then((data) => {
-				console.log(data);
-				alert('Blog deleted successfully!');
-			});
+
+	const handleDeleteArticle = (id) => {
+		axios
+			.delete(`${import.meta.env.VITE_API_URL}/article/${id}`)
+			.then((res) => console.log(res?.data))
+			.catch((err) => console.log(err));
 	};
+
 	return (
 		<div className="w-100 manageBlogs p-3">
 			<div className="manageBlogs__head bg-white p-1 mb-3 d-flex">
@@ -58,7 +56,10 @@ const ManageBlogs = () => {
 										<td>{blog?.dateTime}</td>
 										<td>{blog?.title}</td>
 										<td>
-											<button className="btn btn-danger" onClick={handleDelete}>
+											<button
+												className="btn btn-danger"
+												onClick={handleDeleteArticle}
+											>
 												Delete
 											</button>
 										</td>

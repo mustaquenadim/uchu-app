@@ -1,17 +1,19 @@
+import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 const Blog = () => {
-	const { _id } = useParams();
+	const { _id: id } = useParams();
 	const [blog, setBlog] = useState();
+
 	useEffect(() => {
-		fetch('https://morning-inlet-65384.herokuapp.com/blogs')
-			.then((response) => response.json())
-			.then((data) => {
-				const blogData = data.filter((blog) => _id == blog._id);
-				setBlog(blogData[0]);
-			});
-	}, [_id]);
+		if (id) {
+			axios
+				.get(`${import.meta.env.VITE_API_URL}/article/${id}`)
+				.then((res) => setBlog(res?.data))
+				.catch((err) => console.log(err));
+		}
+	}, [id]);
 
 	return (
 		<div className="blog container">

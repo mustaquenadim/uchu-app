@@ -4,9 +4,11 @@ import { BsArrowLeft } from 'react-icons/bs';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import moment from 'moment';
+import ReactQuill from 'react-quill';
 
 const WriteBlog = () => {
 	const { register, handleSubmit } = useForm();
+	const [value, setValue] = useState('');
 	const dateTime = moment().format('LLL');
 
 	const [imageURL, setImageURL] = useState(null);
@@ -92,14 +94,7 @@ const WriteBlog = () => {
 								<label htmlFor="price" className="form-label">
 									Description
 								</label>
-								<textarea
-									type="text"
-									className="form-control"
-									name="description"
-									id="description"
-									placeholder="Enter Description"
-									{...register('description')}
-								/>
+								<ReactQuill theme="snow" value={value} onChange={setValue} />
 							</div>
 							<input type="submit" className="btn btn-primary" value="Post" />
 						</form>

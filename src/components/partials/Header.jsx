@@ -6,7 +6,7 @@ const Header = () => {
 	return (
 		<div className="header text-center">
 			<Link to="/" className="brand text-center">
-				Mustaque's Blog
+				Uchu
 			</Link>
 			<nav class="navbar navbar-expand-lg navbar-light">
 				<div class="container">
