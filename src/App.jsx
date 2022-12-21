@@ -57,11 +57,11 @@ const App = () => {
 		{
 			path: 'dashboard',
 			element: (
-				<PrivateRoute>
-					<Suspense fallback={<>loading...</>}>
-						<DashboardLayout />
-					</Suspense>
-				</PrivateRoute>
+				// <PrivateRoute>
+				<Suspense fallback={<>loading...</>}>
+					<DashboardLayout />
+				</Suspense>
+				// </PrivateRoute>
 			),
 			children: [
 				{

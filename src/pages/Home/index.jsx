@@ -12,7 +12,7 @@ const Home = () => {
 			.get(`${import.meta.env.VITE_API_URL}/article`)
 			.then((res) => setArticles(res?.data))
 			.catch((err) => console.log(err));
-	});
+	}, []);
 
 	return (
 		<div className="home">
@@ -21,7 +21,7 @@ const Home = () => {
 				<div className="blogs my-5">
 					<h2 className="section__head text-center my-5">All Blogs</h2>
 					<div className="row row-cols-1 row-cols-md-3 g-4">
-						{articles.map((blog) => (
+						{articles?.map((blog) => (
 							<BlogCard key={blog?._id} blog={blog} />
 						))}
 					</div>
